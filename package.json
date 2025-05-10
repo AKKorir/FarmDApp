@@ -1,7 +1,35 @@
 {
   "dependencies": {
     "@metamask/detect-provider": "^2.0.0",
+    "axios": "^1.8.4",
     "ethers": "^5.8.0",
     "truffle": "^5.5.7"
-  }
+  },
+  "name": "y",
+  "version": "1.0.0",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "mocha": "^10.1.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AKKorir/FarmDApp.git"
+  },
+  "keywords": [
+    "produce",
+    "tracking"
+  ],
+  "author": "AKKorir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AKKorir/FarmDApp/issues"
+  },
+  "homepage": "https://github.com/AKKorir/FarmDApp#readme",
+  "description": ""
 }

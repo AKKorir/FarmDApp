@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produce Management</title>
+</head>
+<body>
+    <h1>Produce Management</h1>
+
+    <h2>Add Produce</h2>
+    <form id="addProduceForm">
+        <label for="details">Details:</label>
+        <input type="text" id="details" name="details" required>
+        <button type="submit">Add Produce</button>
+    </form>
+
+    <h2>Update Job Status</h2>
+    <form id="updateJobStatusForm">
+        <label for="jobId">Job ID:</label>
+        <input type="number" id="jobId" name="jobId" required>
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required>
+        <button type="submit">Update Job Status</button>
+    </form>
+
+    <h2>Earn Points</h2>
+    <form id="earnPointsForm">
+        <label for="produceId">Produce ID:</label>
+        <input type="number" id="produceId" name="produceId" required>
+        <button type="submit">Earn Points</button>
+    </form>
+
+    <h2>Get Produce</h2>
+    <form id="getProduceForm">
+        <label for="produceIdGet">Produce ID:</label>
+        <input type="number" id="produceIdGet" name="produceIdGet" required>
+        <button type="submit">Get Produce</button>
+    </form>
+
+    <h2>Get Job</h2>
+    <form id="getJobForm">
+        <label for="jobIdGet">Job ID:</label>
+        <input type="number" id="jobIdGet" name="jobIdGet" required>
+        <button type="submit">Get Job</button>
+    </form>
+
+    <h2>Get Points</h2>
+    <form id="getPointsForm">
+        <label for="pointsIdGet">Points ID:</label>
+        <input type="number" id="pointsIdGet" name="pointsIdGet" required>
+        <button type="submit">Get Points</button>
+    </form>
+
+    <script>
+        async function addProduce(event) {
+            event.preventDefault();
+            const details = document.getElementById('details').value;
+            const response = await fetch('/addProduce', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ details })
+            });
+            const result = await response.json();
+            console.log(result);
+        }
+
+        async function updateJobStatus(event) {
+            event.preventDefault();
+            const jobId = document.getElementById('jobId').value;
+            const status = document.getElementById('status').value;
+            const response = await fetch('/updateJobStatus', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ jobId, status })
+            });
+            const result = await response.json();
+            console.log(result);
+        }
+
+        async function earnPoints(event) {
+            event.preventDefault();
+            const produceId = document.getElementById('produceId').value;
+            const response = await fetch('/earnPoints', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ produceId })
+            });
+            const result = await response.json();
+            console.log(result);
+        }
+
+        async function getProduce(event) {
+            event.preventDefault();
+            const produceId = document.getElementById('produceIdGet').value;
+            const response = await fetch(`/getProduce/${produceId}`);
+            const result = await response.json();
+            console.log(result);
+        }
+
+        async function getJob(event) {
+            event.preventDefault();
+            const jobId = document.getElementById('jobIdGet').value;
+            const response = await fetch(`/getJob/${jobId}`);
+            const result = await response.json();
+            console.log(result);
+        }
+
+        async function getPoints(event) {
+            event.preventDefault();
+            const pointsId = document.getElementById('pointsIdGet').value;
+            const response = await fetch(`/getPoints/${pointsId}`);
+            const result = await response.json();
+            console.log(result);
+        }
+
+        document.getElementById('addProduceForm').addEventListener('submit', addProduce);
+        document.getElementById('updateJobStatusForm').addEventListener('submit', updateJobStatus);
+        document.getElementById('earnPointsForm').addEventListener('submit', earnPoints);
+        document.getElementById('getProduceForm').addEventListener('submit', getProduce);
+        document.getElementById('getJobForm').addEventListener('submit', getJob);
+        document.getElementById('getPointsForm').addEventListener('submit', getPoints);
+    </script>
+</body>
+</html>
